@@ -9,6 +9,7 @@ class Player(CircleShape):
 
         self.rotation = 0
         self.timer = 0
+        self.quit = False
     
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -36,6 +37,8 @@ class Player(CircleShape):
         if keys[pygame.K_SPACE]:
             if self.timer <= 0:
                 self.shoot(dt)
+        if keys[pygame.K_q]:
+            self.quit = True
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt

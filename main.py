@@ -11,6 +11,8 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    player_score = 0
+    pygame.display.set_caption(f"Player Score: {player_score}")
 
     asteroids = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
@@ -26,10 +28,8 @@ def main():
     asteroidfield = AsteroidField()
 
     print("Starting Asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
 
-    while True:
+    while player.quit != True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -39,10 +39,13 @@ def main():
         for a in asteroids:
             for shot in shots:
                 if a.collision(shot):
+                    player_score += a.score()
                     a.split()
                     shot.kill()
+                    pygame.display.set_caption(f"Player Score: {player_score}")
             if a.collision(player):
                 print("Game over!")
+                print(f"Final Score: {player_score}")
                 sys.exit()
 
         screen.fill("black")
@@ -52,6 +55,9 @@ def main():
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000
+    
+    print("Quitter!")
+    print(f"Final Score: {player_score}")
 
 if __name__ == "__main__":
     main()
