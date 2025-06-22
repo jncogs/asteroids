@@ -1,7 +1,7 @@
 import pygame
 import random
-from asteroid import Asteroid
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, ASTEROID_MIN_RADIUS, ASTEROID_MAX_RADIUS, ASTEROID_KINDS, ASTEROID_SPAWN_RATE
+from asteroid import Asteroid
 
 class AsteroidField(pygame.sprite.Sprite):
     edges = [
